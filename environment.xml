@@ -1,0 +1,13 @@
+<Environment>
+  <camtrans>0.930986 -1.233453 2.412977</camtrans>
+  <camrotationaxis>-0.946522 -0.231893 0.224324 122.297980</camrotationaxis>
+<robot>
+<robot file="aubo_i5_no_pedestal.dae"></robot>
+<translation>0.0 0.0 0.0</translation>
+<manipulator name="arm">
+  <base>base_link</base>
+  <effector>wrist3_Link</effector>
+</manipulator>
+</robot>
+
+</Environment>
