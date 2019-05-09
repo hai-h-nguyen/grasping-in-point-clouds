@@ -42,3 +42,6 @@ Details on implementing a robot manipulator to grasp objects using point cloud d
   - Environment [file](https://github.com/hhn1n15/GraspingInPointCloud/blob/master/environment.xml): This follows OpenRave xml format. Basically, it will load the robot and do some camera view settings. It is important however, to define a manipulator in this file, with the defined base and end-effector as the manipulator name will be used in the [constraints](https://github.com/hhn1n15/GraspingInPointCloud/blob/master/test_trajectory_no_pedestal.py#L2724) of OpenRave.
   - Loading everything together
   ![All](https://github.com/hhn1n15/GraspingInPointCloud/blob/master/images/OpenRave_1.png)
+  
+  - Object selection:
+  - Grasp generation:
