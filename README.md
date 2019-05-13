@@ -9,11 +9,12 @@ Details on implementing a robot manipulator to grasp objects using point cloud d
 - All is done in Ubuntu 16.04
 - OpenRave
 - Grasp Pose Detect (GPD) package for generating grasp poses point cloud data
+- TrajOpt
 
 ## Steps:
 - Camera calibration:
   - RGB calibration: [tutorial](http://wiki.ros.org/camera_calibration/Tutorials/MonocularCalibration)
-  - Depth calibration: [jsk_pcl_ros](https://jsk-recognition.readthedocs.io/en/latest/jsk_pcl_ros/calibration.html) <br /> The depth sensor of the Asus camera has significant error (5 cm at 50 cm distance), therefore it is very important to calibrate this sensor properly. I detected the error when using the Aruco tag, the coordinate of the Aruco tag is 5 cm behind the point cloud data. After calibration, the distance is about 1 cm which is sufficiently good enough. The above package tried to align depth estimation from RGB images and the depth output from the sensor. It can be installed through ```apt-get install```. 
+  - Depth calibration: [jsk_pcl_ros](https://jsk-recognition.readthedocs.io/en/latest/jsk_pcl_ros/calibration.html) <br /> The depth sensor of the Asus camera has significant error (5 cm at 50 cm distance), therefore it is very important to calibrate this sensor properly. I detected the error when using the Aruco tag, the coordinate of the Aruco tag is 5 cm behind the point cloud data of the tag. After calibration, the distance is about 1 cm which is sufficiently good enough. The above package tried to align depth estimation from RGB images and the depth output from the sensor. It can be installed through ```apt-get install```. 
   
   ![Depth after calibration](https://github.com/hhn1n15/GraspingInPointCloud/blob/master/images/after_calibration_2.png)
   
@@ -21,7 +22,7 @@ Details on implementing a robot manipulator to grasp objects using point cloud d
   
 - Coordinate transformation: <br /> For planning the robot to go to the desired location to grasp, we need to transform whatever the camera sees to the robot coordinate. That is the transformation matrix from the camera_optical_coordinate to the robot_base_coordinate. I used Aruco tag as the intermediate step.
   
-    ![Aruco Tag](https://github.com/hhn1n15/GraspingInPointCloud/blob/master/images/Aruco_Calibration.png)
+    ![Aruco Tag](/images/Aruco_Calibration.png) 
     
     - The Aruco_coordinate (displayed in the above figure) can be computed easily compared to the camera_optical_coordinate. 
     - As the tag is sticked on the end-effector in a known way, the relationship between Aruco_coordinate and the end_effector_coordinate is also determined.
@@ -43,5 +44,18 @@ Details on implementing a robot manipulator to grasp objects using point cloud d
   - Loading everything together
   ![All](https://github.com/hhn1n15/GraspingInPointCloud/blob/master/images/OpenRave_1.png)
   
-  - Object selection:
+  - Object selection: Color images and point cloud data are combined to select a specific object in a scene of multiple objects. First, a YOLOv3 network is trained to put a bounding box around the selected objects. Details on how to train YOLO-v3 with custom objects can be seen in https://github.com/AlexeyAB. For instance, when we want to grasp the coke in the below image, YOLO can put a bounding box around the object. As we need to generate grasp on the object using point cloud data, we need to know which is the corresponding point cloud of the selected object. Here are steps to do that:
+    - From the point cloud data of objects, we first separate each point cloud data of each object, using filters such as statistical filter, voxel filter, and Euclidean cluster extraction.
+    - Calculating the centroid of these clusters.
+    - Convert these centroids to image plane using camera calibration matrices.
+    - Calculate the distance to the center of the bounding box of the selected object, calculated from YOLO. The smallest distance belong to the cluster of the selected object in 2D. The whole process is illustrated in following images.
+  
+  
+  <p float="center">
+  <img src="/images/predictions.jpg" width="200" />
+  <img src="/images/pcl.png" width="200" /> 
+  <img src="/images/four_objects.png" width="200" />
+  </p>
+
+
   - Grasp generation:
