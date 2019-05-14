@@ -5,7 +5,7 @@ Details on implementing a robot manipulator to grasp objects using point cloud d
 - Aubo-i5 robot
 - Asus Xtion Pro RGB-D camera
 
-## Major Software
+## Software Used
 - All is done in Ubuntu 16.04
 - OpenRave
 - ([GPD](https://github.com/atenpas/gpd)) package for generating grasp poses point cloud data
