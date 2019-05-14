@@ -87,4 +87,7 @@ Given the point cloud data of objects, the desired grasp pose, and the model of 
   </p>
   
   - Videos:
-  ![](/images/output.gif)
+<p align="center">
+<img src="/images/output.gif" width="450" />
+<img src="/images/robot.gif" width="450" />  
+</p>
