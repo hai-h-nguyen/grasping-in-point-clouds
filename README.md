@@ -40,7 +40,10 @@ Details on implementing a robot manipulator to grasp objects using point cloud d
       ```
     - When having all the coordinates, to compute the transformation matrix from the optical_camera_coordinate to the robot_base_frame, we can just use the lookupTransform function. There is also a github [repo](https://github.com/IFL-CAMP/easy_handeye) doing the same thing.
       
-    ![Rviz coordinates](https://github.com/hhn1n15/GraspingInPointCloud/blob/master/images/calibration_1.png)
+    <p align="center">
+    <img src="/images/calibration_1.png" width="500" />
+    </p>      
+      
 - Prepare OpenRave environment: OpenRave is the environment that the motion planner (TrajOpt) used to plan the collision-free trajectories. It will contain: the robot model, the environment model (the point cloud data that the camera sees, transformed to the robot coordinate).
   - Aubo-i5 robot model: In this [link](https://github.com/hhn1n15/aubo_i5_full), an urdf model of the robot is stored. However, the model needs to be converted to .dae file to be used by OpenRave. Example command for the conversion (the ros workspace needs to be compiled first so that the system knows where the file is) ```rosrun collada_urdf urdf_to_collada <input-urdf> <output.dae>```. The output .dae file can be loaded in OpenRave using the command ```openrave aubo_i5_full.dae```.
   - The transformed point cloud data: As we already have the transformation matrix from the camera_optical_coordinate to the robot_base_coordinate. It is quite straight-forward to convert the point cloud data in the robot_base_coordinate. The example code is in this [line](https://github.com/hhn1n15/GraspingInPointCloud/blob/master/test_trajectory_no_pedestal.py#L2590). In this, the transformation matrix is stored in a [text file](https://github.com/hhn1n15/GraspingInPointCloud/blob/master/xtion_frame.txt). In this script, the point cloud data is saved in .pcd format as an input.
@@ -54,8 +57,7 @@ Details on implementing a robot manipulator to grasp objects using point cloud d
     - Calculating the centroid of these clusters.
     - Convert these centroids to image plane using camera calibration matrices.
     - Calculate the distance to the center of the bounding box of the selected object, calculated from YOLO. The smallest distance belong to the cluster of the selected object in 2D. The whole process is illustrated in following images. Note that yellow squares are the projections of 3D centroids, the white dot is the center of the bounding box from YOLO.
-  
-  
+   
   <p align="center">
   <img src="/images/predictions.jpg" width="300" />
   <img src="/images/pcl.png" width="300" /> 
