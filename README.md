@@ -8,8 +8,9 @@ Details on implementing a robot manipulator to grasp objects using point cloud d
 ## Major Software
 - All is done in Ubuntu 16.04
 - OpenRave
-- Grasp Pose Detect (GPD) package for generating grasp poses point cloud data
-- TrajOpt
+- ([GPD](https://github.com/atenpas/gpd)) package for generating grasp poses point cloud data
+- [TrajOpt](https://github.com/joschu/trajopt)
+- Some installation [notes](https://github.com/hhn1n15/BugFixingHistory)
 
 ## Steps:
 - Camera calibration:
