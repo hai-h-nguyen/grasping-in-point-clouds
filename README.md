@@ -1,5 +1,5 @@
 # GraspingInPointCloud
-Details on implementing a robot manipulator to grasp objects using point cloud data.
+Details on implementing a robot manipulator to grasp objects using point cloud data. Read the report for more details.
 
 ## Hardware
 - Aubo-i5 robot
@@ -56,7 +56,7 @@ Details on implementing a robot manipulator to grasp objects using point cloud d
     - From the point cloud data of objects, we first separate each point cloud data of each object, using filters such as statistical filter, voxel filter, and Euclidean cluster extraction.
     - Calculating the centroid of these clusters.
     - Convert these centroids to image plane using camera calibration matrices.
-    - Calculate the distance to the center of the bounding box of the selected object, calculated from YOLO. The smallest distance belong to the cluster of the selected object in 2D. The whole process is illustrated in following images. Note that yellow squares are the projections of 3D centroids, the white dot is the center of the bounding box from YOLO.
+    - Calculate the distance to the center of the bounding box of the selected object, calculated from YOLO. The smallest distance belong to the cluster of the selected object in 2D. The whole process is illustrated in following images. Note that yellow squares are the projections of 3D centroids, the white dot (on the coke can) is the center of the bounding box from YOLO.
    
   <p align="center">
   <img src="/images/predictions.jpg" width="300" />
@@ -66,3 +66,25 @@ Details on implementing a robot manipulator to grasp objects using point cloud d
 
 
   - Grasp generation:
+Given the point cloud data of the selected object is determined, GPD can be used to generated grasp on the object. Filtering is also applied to give priority of the poses that are closer to the orientation of the gripper.
+- Grasp execution:
+Given the point cloud data of objects, the desired grasp pose, and the model of the robot, TrajOpt can generate collision-free trajectories guiding the robot to the desired gripper. The trajectory is then replayed in the real robot.
+- Results:
+  - Trajectory generated in the simulated model.
+   <p align="center">
+  <img src="/images/Sim_1.png" width="200" />
+  <img src="/images/Sim_2.png" width="200" />
+  <img src="/images/Sim_3.png" width="200" />
+  <img src="/images/Sim_4.png" width="200" />
+  </p>
+ 
+  - Simulated trajectory is replayed in the real robot.
+  <p align="center">
+  <img src="/images/Grasp_2.png" width="200" />
+  <img src="/images/Grasp_3.png" width="200" />
+  <img src="/images/Grasp_4.png" width="200" />
+  <img src="/images/Grasp_5.png" width="200" />
+  </p>
+  
+  - Videos:
+  [![vid1](http://share.gifyoutube.com/KzB6Gb.gif)](https://bit.ly/2HlsQqa)
