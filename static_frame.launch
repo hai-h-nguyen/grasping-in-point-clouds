@@ -1,0 +1,28 @@
+<launch>
+<!-- <node pkg="tf" type="static_transform_publisher" name="end_effector_broadcaster" args="0 0 -0.002 1.5708 0 0 aruco_marker_frame end_effector_frame  100" /> -->
+
+<!-- <node pkg="tf" type="static_transform_publisher" name="robot_base_broadcaster" args=" -0.214593534602693  -0.629495407290422  -0.215495156750654 1.616801510011362  -1.303983886960539   1.570780925228566 end_effector_frame robot_base_frame  100" /> -->
+
+
+<!-- <node pkg="tf" type="static_transform_publisher" name="robot_base_broadcaster" args="0.270584287978344  -0.820017458393973   0.00428995598363 -1.804079403246172  -0.020226175000221   1.485896649791552  end_effector_frame robot_base_frame 100" /> -->
+
+<!-- 3 grasp poses -->
+<!-- <node pkg="tf" type="static_transform_publisher" name="estimate_grasp_broadcaster" args=" -0.182985 0.155711 0.915473 2.79206 -1.31479 1.87258 camera_depth_optical_frame grasp_pose_frame 100" /> -->
+
+<node pkg="tf" type="static_transform_publisher" name="estimate_grasp_broadcaster" args=" -0.2463 0.16392 0.887704
+ 3.07776 -0.445304 1.53358 camera_depth_optical_frame grasp_pose_frame 100" />
+
+<!-- <node pkg="tf" type="static_transform_publisher" name="estimate_grasp_broadcaster" args="-0.0658816 0.12839 0.931555 0.134796 -1.00161 1.0496 camera_depth_optical_frame grasp_pose_frame 100" /> -->
+
+<!-- x y z qx qy qz qw -->
+<node pkg="tf" type="static_transform_publisher" name="estimate_base_broadcaster" args="0.618768 0.203293 0.528897 0.436401 0.578853 -0.570743 0.385662 camera_depth_optical_frame estimate_robot_base_frame 100" />
+
+
+<node pkg="tf" type="static_transform_publisher" name="grasp_aubo_broadcaster" args="0 0 0 0.5 -0.5 0.5 -0.5 grasp_pose_frame_offset grasp_aubo_frame 100" />
+
+<node pkg="tf" type="static_transform_publisher" name="grasp_pose_offset_broadcaster" args="-0.115 0 0.0 0.0 0.0 0.0 grasp_pose_frame grasp_pose_frame_offset 100" />
+
+
+<!-- <node pkg="tf" type="static_transform_publisher" name="estimate_base_broadcaster_2" args="-0.731245 0.179875 -0.693763 -0.031560 0.738889 -0.671178 -0.050674 grasp_pose_frame estimate_base_frame_2 100" /> -->
+
+</launch>
