@@ -71,23 +71,6 @@ Given the point cloud data of the selected object is determined, GPD can be used
 - Grasp execution:
 Given the point cloud data of objects, the desired grasp pose, and the model of the robot, TrajOpt can generate collision-free trajectories guiding the robot to the desired gripper. The trajectory is then replayed in the real robot.
 - Results:
-  - Trajectory generated in the simulated model.
-   <p align="center">
-  <img src="/images/Sim_1.png" width="200" />
-  <img src="/images/Sim_2.png" width="200" />
-  <img src="/images/Sim_3.png" width="200" />
-  <img src="/images/Sim_4.png" width="200" />
-  </p>
- 
-  - Simulated trajectory is replayed in the real robot.
-  <p align="center">
-  <img src="/images/Grasp_2.png" width="200" />
-  <img src="/images/Grasp_3.png" width="200" />
-  <img src="/images/Grasp_4.png" width="200" />
-  <img src="/images/Grasp_5.png" width="200" />
-  </p>
-  
-  - Videos:
 <p align="center">
 <img src="/images/output.gif" width="450" />
 <img src="/images/robot.gif" width="450" />  
