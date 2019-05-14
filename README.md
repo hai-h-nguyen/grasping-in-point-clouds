@@ -87,4 +87,4 @@ Given the point cloud data of objects, the desired grasp pose, and the model of 
   </p>
   
   - Videos:
-  [![vid1](http://share.gifyoutube.com/KzB6Gb.gif)](https://bit.ly/2HlsQqa)
+  ![](/images/output.gif)
